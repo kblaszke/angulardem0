@@ -1,0 +1,32 @@
+<h1>Hello
+  {{name}}</h1>
+  <p><strong>Email:</strong> {{email}}</p>
+  <p><strong>Address:</strong> {{adr.zipcode}} {{adr.city}}, {{adr.street}}</p>
+  <button (click)="toggleHobbies()"> {{showHobbies ? "Hide hobbies" : "Show hobbies"}} </button>
+  <br/>
+  <div *ngIf="showHobbies">
+    <strong>Hobbies:</strong>
+    <ul>
+      <li *ngFor="let hobby of hobbies; let i = index"> 
+        <button (click)="deleteHobby(i)">X</button> {{hobby}} 
+      </li>
+    </ul>
+    <form (submit)="addHobby(hobby.value)">
+      <label>Add hobby</label>
+      <input type="text" #hobby /><br/>
+    </form>
+  </div>
+  <hr/>
+  <form>
+    <label>Name: </label> <input type="text" name="name" [(ngModel)]="name"/><br/>
+    <label>Email: </label><input type="text" name="email" [(ngModel)]="email"/><br/>
+    <label>Street: </label><input type="text" name="adr.street" [(ngModel)]="adr.street"/><br/>
+    <label>City: </label><input type="text" name="adr.zipcode" [(ngModel)]="adr.zipcode"/>
+    <input type="text" name="adr.city" [(ngModel)]="adr.city"/><br/>
+  </form>
+  <hr/>
+  <h2>Posts</h2>
+  <div *ngFor="let post of posts">
+    <h3>{{post.title}}</h3>
+    <p>{{post.body}}</p>
+  </div>
